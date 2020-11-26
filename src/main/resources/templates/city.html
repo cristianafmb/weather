@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Show Cities</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+        .column{
+             float: left;
+             width: auto;
+             padding: 10px;
+         }
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="">Weather Web REST API</a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li class="active"><a href="/">Home</a></li>
+            <li><a href="/cities">Show All Cities</a></li>
+            <li><a href="/today">Weather Today</a></li>
+            <li><a href="/nextdays">Weather Next Days</a></li>
+        </ul>
+    </div>
+</nav>
+<div>
+    
+</div>
+
+<tr th:each="c: ${city}">
+        <td><span th:text="${c.id}"> ID </span></td>
+        <td><span th:text="${c.name}"> Name </span></td>
+        <td><span th:text="${c.region}"> region </span></td>
+    </tr>
+
+
+</body>
+</html>
