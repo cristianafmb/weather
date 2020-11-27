@@ -7,13 +7,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <style>
-        .column{
-             float: left;
-             width: auto;
-             padding: 10px;
-         }
-    </style>
+  
 </head>
 <body>
 
@@ -26,19 +20,50 @@
             <li class="active"><a href="/">Home</a></li>
             <li><a href="/cities">Show All Cities</a></li>
             <li><a href="/today">Weather Today</a></li>
-            <li><a href="/nextdays">Weather Next Days</a></li>
-        </ul>
+            <li><a href="/nextdays">Weather Next Days</a></li>         
+        </ul>      
+        <h5 style="float: center; text-align:center; margin-left: 80%; "> 
+              <a href="/city" th:href="@{/city(name=${city.name})}" class="btn  btn-outline-info">Celsius</a>
+                  <a href="/city" th:href="@{/city(name=${city.name})}" class="btn  btn-outline-info">Fahrenheit</a>
+        
+         </h5>  
+       
     </div>
+   
 </nav>
-<div>
-    
-</div>
 
-<tr th:each="c: ${city}">
-        <td><span th:text="${c.id}"> ID </span></td>
-        <td><span th:text="${c.name}"> Name </span></td>
-        <td><span th:text="${c.region}"> region </span></td>
-    </tr>
+<div class="container">
+    <div class="jumbotron">
+      <h1 th:text="${city.name}"></h1>
+    </div>    
+
+    <table class="table"  th:each="w : ${today}" style="text-align: center;">
+        <thead>
+          <tr>
+            <th scope="col" style="background-color: #F5F5F5;">Day</th>
+            <th scope="col">Minimum Temperature</th>
+            <th scope="col" style="background-color: #F5F5F5;">Maximum Temperature</th>
+            <th scope="col">Precipitation (%)</th>
+            <th scope="col" style="background-color: #F5F5F5;">Humidity (%)</th>
+            <th scope="col">Wind (km/h)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="background-color: #F5F5F5;"><span th:text="${day}"> Day </span></td>
+            <td><span th:text="${w.min}"> min </span></td>
+            <td style="background-color: #F5F5F5;"><span th:text="${w.max}" > max </span></td>
+            <td ><span th:text="${w.precipitation}"> precipitation </span></td>
+            <td  style="background-color: #F5F5F5;"><span th:text="${w.humidity}"> humidity </span></td>
+            <td><span th:text="${w.wind}"> wind </span></td>
+          </tr>
+         
+        </tbody>
+      </table>
+
+  </div>
+
+
 
 
 </body>

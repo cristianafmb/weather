@@ -20,10 +20,10 @@ public class Weather {
     private long id;
 
     @Column
-    private Integer min;
+    private Double min;
     
     @Column
-    private Integer max;
+    private Double max;
 
     @Column
     private Integer precipitation;
@@ -37,6 +37,8 @@ public class Weather {
     @Column
     private LocalDateTime day;
 
+    private boolean degree = true; // true -> celsius, false -> fahrenheit
+
 
     @ManyToOne(cascade=CascadeType.ALL,fetch = FetchType.LAZY)
     @EqualsAndHashCode.Exclude
@@ -44,7 +46,7 @@ public class Weather {
     @JsonIgnore
     private City city;
 
-    public Weather(LocalDateTime day, Integer min, Integer max, Integer precipitation, Integer humidity, Integer wind, City city) {
+    public Weather(LocalDateTime day, Double min, Double max, Integer precipitation, Integer humidity, Integer wind, City city) {
         this.day = day;
         this.min = min;
         this.max = max;
@@ -54,6 +56,13 @@ public class Weather {
         this.city = city;
     }
 
+    public boolean getDegree() {
+        return degree;
+    }
+
+    public void setDegree(Boolean degree) {
+        this.degree = degree;
+    }
 
     public long getId() {
         return id;
@@ -63,20 +72,20 @@ public class Weather {
         this.id = id;
     }
 
-    public Integer getMin() {
+    public Double getMin() {
         return min;
     }
 
-    public void setMin(Integer min) {
-        this.min = min;
+    public void setMin(double d) {
+        this.min = d;
     }
 
-    public Integer getMax() {
+    public Double getMax() {
         return max;
     }
 
-    public void setMax(Integer max) {
-        this.max = max;
+    public void setMax(double d) {
+        this.max = d;
     }
 
     public LocalDateTime getTime() {

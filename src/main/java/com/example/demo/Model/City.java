@@ -1,9 +1,15 @@
 package com.example.demo.Model;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -24,7 +30,7 @@ public class City {
     private String region;
 
     @OneToMany(cascade=CascadeType.ALL)
-    private Set<Weather> weathers = new HashSet<>();
+    private List<Weather> weathers = new ArrayList<>();
 
     public City(String name, String region ) {
         this.name = name;
@@ -55,7 +61,7 @@ public class City {
         this.region = region;
     }
 
-    public Set<Weather> getWeathers() {
+    public List<Weather> getWeathers() {
         return weathers;
     }
     public void addWeather(Weather weather) {

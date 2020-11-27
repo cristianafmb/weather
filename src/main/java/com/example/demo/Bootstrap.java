@@ -26,13 +26,13 @@ public class Bootstrap implements ApplicationListener<ContextRefreshedEvent> {
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
-        City Aveiro = new City("aveiro", "North");
+        City Aveiro = new City("Aveiro", "North");
         LocalDateTime now = LocalDateTime.now();
-        Weather a1 = new Weather(now,14, 21,100, 90, 18, Aveiro);
-        Weather a2 = new Weather(now.plusDays(1),9, 16,1, 68, 11, Aveiro);
-        Weather a3 = new Weather(now.plusDays(2),8, 16,10, 79, 11, Aveiro);
-        Weather a4 = new Weather(now.plusDays(3),11, 17,80, 74, 23, Aveiro);
-        Weather a5 = new Weather(now.plusDays(4),11, 16,40, 74, 18, Aveiro);
+        Weather a1 = new Weather(now,14.00, 21.00,100, 90, 18, Aveiro);
+        Weather a2 = new Weather(now.plusDays(1),9.00, 16.00,1, 68, 11, Aveiro);
+        Weather a3 = new Weather(now.plusDays(2),8.00, 16.00,10, 79, 11, Aveiro);
+        Weather a4 = new Weather(now.plusDays(3),11.00, 17.00,80, 74, 23, Aveiro);
+        Weather a5 = new Weather(now.plusDays(4),11.00, 16.00,40, 74, 18, Aveiro);
         this.weatherRepo.save(a1);
         this.weatherRepo.save(a2);
         this.weatherRepo.save(a3);
@@ -45,12 +45,12 @@ public class Bootstrap implements ApplicationListener<ContextRefreshedEvent> {
         Aveiro.addWeather(a5);
         this.citiesRepo.save(Aveiro);
 
-        City VianaDoCastelo = new City("vianadocastelo", "North");
-        Weather vc1 = new Weather(now,9, 16,50, 73, 6, VianaDoCastelo);
-        Weather vc2 = new Weather(now.plusDays(1),9, 16,10, 81, 6, VianaDoCastelo);
-        Weather vc3 = new Weather(now.plusDays(2),11, 17,20, 73, 14, VianaDoCastelo);
-        Weather vc4 = new Weather(now.plusDays(3),10, 16,40, 74, 13, VianaDoCastelo);
-        Weather vc5 = new Weather(now.plusDays(4),10, 19,10, 70, 13, VianaDoCastelo);
+        City VianaDoCastelo = new City("Viana do Castelo", "North");
+        Weather vc1 = new Weather(now,9.0, 16.0,50, 73, 6, VianaDoCastelo);
+        Weather vc2 = new Weather(now.plusDays(1),9.0, 16.0,10, 81, 6, VianaDoCastelo);
+        Weather vc3 = new Weather(now.plusDays(2),11.0, 17.0,20, 73, 14, VianaDoCastelo);
+        Weather vc4 = new Weather(now.plusDays(3),10.0, 16.0,40, 74, 13, VianaDoCastelo);
+        Weather vc5 = new Weather(now.plusDays(4),10.0, 19.0,10, 70, 13, VianaDoCastelo);
         this.weatherRepo.save(vc1);
         this.weatherRepo.save(vc2);
         this.weatherRepo.save(vc3);
@@ -64,12 +64,12 @@ public class Bootstrap implements ApplicationListener<ContextRefreshedEvent> {
         this.citiesRepo.save(VianaDoCastelo);
 
 
-        City Braga = new City("braga", "North");
-        Weather b1 = new Weather(now,9, 15,8, 76, 6, Braga);
-        Weather b2 = new Weather(now.plusDays(1),7, 17,10, 79, 8, Braga);
-        Weather b3 = new Weather(now.plusDays(2),10, 17,50, 75, 19, Braga);
-        Weather b4 = new Weather(now.plusDays(3),9, 16,30, 74, 14, Braga);
-        Weather b5 = new Weather(now.plusDays(4),9, 18,10, 72, 11, Braga);
+        City Braga = new City("Braga", "North");
+        Weather b1 = new Weather(now,9.0, 15.0,8, 76, 6, Braga);
+        Weather b2 = new Weather(now.plusDays(1),7.0, 17.0,10, 79, 8, Braga);
+        Weather b3 = new Weather(now.plusDays(2),10.0, 17.0,50, 75, 19, Braga);
+        Weather b4 = new Weather(now.plusDays(3),9.0, 16.0,30, 74, 14, Braga);
+        Weather b5 = new Weather(now.plusDays(4),9.0, 18.0,10, 72, 11, Braga);
         this.weatherRepo.save(b1);
         this.weatherRepo.save(b2);
         this.weatherRepo.save(b3);
@@ -82,12 +82,12 @@ public class Bootstrap implements ApplicationListener<ContextRefreshedEvent> {
         Braga.addWeather(b5);
         this.citiesRepo.save(Braga);
 
-        City VilaReal = new City("vilareal", "North");
-        Weather vr1 = new Weather(now,8, 11,38, 86, 6, VilaReal);
-        Weather vr2 = new Weather(now.plusDays(1),6, 14,10, 81, 6, VilaReal);
-        Weather vr3 = new Weather(now.plusDays(2),8, 13,20, 84, 10, VilaReal);
-        Weather vr4 = new Weather(now.plusDays(3),7, 12,40, 82, 10, VilaReal);
-        Weather vr5 = new Weather(now.plusDays(4),6, 14,10, 80, 8, VilaReal);
+        City VilaReal = new City("Vila Real", "North");
+        Weather vr1 = new Weather(now,8.0, 11.0,38, 86, 6, VilaReal);
+        Weather vr2 = new Weather(now.plusDays(1),6.0, 14.0,10, 81, 6, VilaReal);
+        Weather vr3 = new Weather(now.plusDays(2),8.0, 13.0,20, 84, 10, VilaReal);
+        Weather vr4 = new Weather(now.plusDays(3),7.0, 12.0,40, 82, 10, VilaReal);
+        Weather vr5 = new Weather(now.plusDays(4),6.0, 14.0,10, 80, 8, VilaReal);
         this.weatherRepo.save(vr1);
         this.weatherRepo.save(vr2);
         this.weatherRepo.save(vr3);
@@ -100,12 +100,12 @@ public class Bootstrap implements ApplicationListener<ContextRefreshedEvent> {
         VilaReal.addWeather(vr5);
         this.citiesRepo.save(VilaReal);
 
-        City Porto = new City("porto", "North");
-        Weather p1 = new Weather(now,9, 16,73, 77, 8, Porto);
-        Weather p2 = new Weather(now.plusDays(1),9, 16,10, 81, 11, Porto);
-        Weather p3 = new Weather(now.plusDays(2),11, 17,60, 73, 21, Porto);
-        Weather p4 = new Weather(now.plusDays(3),11, 16,40, 74, 16, Porto);
-        Weather p5 = new Weather(now.plusDays(4),12, 18,10, 70, 18, Porto);
+        City Porto = new City("Porto", "North");
+        Weather p1 = new Weather(now,9.0, 16.0,73, 77, 8, Porto);
+        Weather p2 = new Weather(now.plusDays(1),9.0, 16.0,10, 81, 11, Porto);
+        Weather p3 = new Weather(now.plusDays(2),11.0, 17.0,60, 73, 21, Porto);
+        Weather p4 = new Weather(now.plusDays(3),11.0, 16.0,40, 74, 16, Porto);
+        Weather p5 = new Weather(now.plusDays(4),1.02, 18.0,10, 70, 18, Porto);
         this.weatherRepo.save(p1);
         this.weatherRepo.save(p2);
         this.weatherRepo.save(p3);
@@ -120,12 +120,12 @@ public class Bootstrap implements ApplicationListener<ContextRefreshedEvent> {
 
 
 
-        City Braganca = new City("bragança", "North");
-        Weather bg1 = new Weather(now,6, 11,54, 77, 13, Braganca);
-        Weather bg2 = new Weather(now.plusDays(1),3, 13,10, 80, 11, Braganca);
-        Weather bg3 = new Weather(now.plusDays(2),5, 11,10, 84, 6, Braganca);
-        Weather bg4 = new Weather(now.plusDays(3),4, 11,60, 83, 8, Braganca);
-        Weather bg5 = new Weather(now.plusDays(4),4, 13,10, 77, 10, Braganca);
+        City Braganca = new City("Bragança", "North");
+        Weather bg1 = new Weather(now,6.0, 11.0,54, 77, 13, Braganca);
+        Weather bg2 = new Weather(now.plusDays(1),3.0, 13.0,10, 80, 11, Braganca);
+        Weather bg3 = new Weather(now.plusDays(2),5.0, 11.0,10, 84, 6, Braganca);
+        Weather bg4 = new Weather(now.plusDays(3),4.0, 11.0,60, 83, 8, Braganca);
+        Weather bg5 = new Weather(now.plusDays(4),4.0, 13.0,10, 77, 10, Braganca);
         this.weatherRepo.save(bg1);
         this.weatherRepo.save(bg2);
         this.weatherRepo.save(bg3);
@@ -138,12 +138,12 @@ public class Bootstrap implements ApplicationListener<ContextRefreshedEvent> {
         Braganca.addWeather(bg5);
         this.citiesRepo.save(Braganca);
 
-        City Viseu = new City("viseu", "North");
-        Weather v1 = new Weather(now,7, 12,80, 84, 11, Viseu);
-        Weather v2 = new Weather(now.plusDays(1),6, 14,10, 78, 14, Viseu);
-        Weather v3 = new Weather(now.plusDays(2),8, 14,20, 76, 16, Viseu);
-        Weather v4 = new Weather(now.plusDays(3),9, 12,40, 79, 14, Viseu);
-        Weather v5 = new Weather(now.plusDays(4),9, 15,10, 73, 18, Viseu);
+        City Viseu = new City("Viseu", "North");
+        Weather v1 = new Weather(now,7.0, 12.0,80, 84, 11, Viseu);
+        Weather v2 = new Weather(now.plusDays(1),6.0, 14.0,10, 78, 14, Viseu);
+        Weather v3 = new Weather(now.plusDays(2),8.0, 14.0,20, 76, 16, Viseu);
+        Weather v4 = new Weather(now.plusDays(3),9.0, 12.0,40, 79, 14, Viseu);
+        Weather v5 = new Weather(now.plusDays(4),9.0, 15.0,10, 73, 18, Viseu);
         this.weatherRepo.save(v1);
         this.weatherRepo.save(v2);
         this.weatherRepo.save(v3);
@@ -156,12 +156,12 @@ public class Bootstrap implements ApplicationListener<ContextRefreshedEvent> {
         Viseu.addWeather(v5);
         this.citiesRepo.save(Viseu);
 
-        City Guarda = new City("guarda", "North");
-        Weather g1 = new Weather(now,4, 8,22, 90, 6, Guarda);
-        Weather g2 = new Weather(now.plusDays(1),4, 11,20, 87, 13, Guarda);
-        Weather g3 = new Weather(now.plusDays(2),6, 10,20, 84, 19, Guarda);
-        Weather g4 = new Weather(now.plusDays(3),6, 9,60, 87, 16, Guarda);
-        Weather g5 = new Weather(now.plusDays(4),4, 12,20, 79, 11, Guarda);
+        City Guarda = new City("Guarda", "North");
+        Weather g1 = new Weather(now,4.0, 8.0,22, 90, 6, Guarda);
+        Weather g2 = new Weather(now.plusDays(1),4.0, 11.0,20, 87, 13, Guarda);
+        Weather g3 = new Weather(now.plusDays(2),6.0, 10.0,20, 84, 19, Guarda);
+        Weather g4 = new Weather(now.plusDays(3),6.0, 9.0,60, 87, 16, Guarda);
+        Weather g5 = new Weather(now.plusDays(4),4.0, 12.0,20, 79, 11, Guarda);
         this.weatherRepo.save(g1);
         this.weatherRepo.save(g2);
         this.weatherRepo.save(g3);
@@ -174,12 +174,12 @@ public class Bootstrap implements ApplicationListener<ContextRefreshedEvent> {
         Guarda.addWeather(g5);
         this.citiesRepo.save(Guarda);
 
-        City Coimbra = new City("coimbra", "Center");
-        Weather c1 = new Weather(now,8, 17,6, 69, 10, Coimbra);
-        Weather c2 = new Weather(now.plusDays(1),8, 17,20, 78, 8, Coimbra);
-        Weather c3 = new Weather(now.plusDays(2),11, 17,80, 72, 18, Coimbra);
-        Weather c4 = new Weather(now.plusDays(3),11, 15,30, 74, 16, Coimbra);
-        Weather c5 = new Weather(now.plusDays(4),11, 18,10, 69, 16, Coimbra);
+        City Coimbra = new City("Coimbra", "Center");
+        Weather c1 = new Weather(now,8.0, 17.0,6, 69, 10, Coimbra);
+        Weather c2 = new Weather(now.plusDays(1),8.0, 17.0,20, 78, 8, Coimbra);
+        Weather c3 = new Weather(now.plusDays(2),11.0, 17.0,80, 72, 18, Coimbra);
+        Weather c4 = new Weather(now.plusDays(3),11.0, 15.0,30, 74, 16, Coimbra);
+        Weather c5 = new Weather(now.plusDays(4),11.0, 18.0,10, 69, 16, Coimbra);
         this.weatherRepo.save(c1);
         this.weatherRepo.save(c2);
         this.weatherRepo.save(c3);
@@ -192,12 +192,12 @@ public class Bootstrap implements ApplicationListener<ContextRefreshedEvent> {
         Coimbra.addWeather(c5);
         this.citiesRepo.save(Coimbra);
 
-        City CasteloBranco = new City("castelobranco", "Center");
-        Weather cb1 = new Weather(now,7, 11,7, 87, 11, CasteloBranco);
-        Weather cb2 = new Weather(now.plusDays(1),6, 14,20, 77, 11, CasteloBranco);
-        Weather cb3 = new Weather(now.plusDays(2),8, 13,20, 79, 14, CasteloBranco);
-        Weather cb4 = new Weather(now.plusDays(3),8, 13,60, 80, 14, CasteloBranco);
-        Weather cb5 = new Weather(now.plusDays(4),7, 15,30, 74, 16, CasteloBranco);
+        City CasteloBranco = new City("Castelo Branco", "Center");
+        Weather cb1 = new Weather(now,7.0, 11.0,7, 87, 11, CasteloBranco);
+        Weather cb2 = new Weather(now.plusDays(1),6.0, 14.0,20, 77, 11, CasteloBranco);
+        Weather cb3 = new Weather(now.plusDays(2),8.0, 13.0,20, 79, 14, CasteloBranco);
+        Weather cb4 = new Weather(now.plusDays(3),8.0, 13.0,60, 80, 14, CasteloBranco);
+        Weather cb5 = new Weather(now.plusDays(4),7.0, 15.0,30, 74, 16, CasteloBranco);
         this.weatherRepo.save(cb1);
         this.weatherRepo.save(cb2);
         this.weatherRepo.save(cb3);
@@ -210,12 +210,12 @@ public class Bootstrap implements ApplicationListener<ContextRefreshedEvent> {
         CasteloBranco.addWeather(cb5);
         this.citiesRepo.save(CasteloBranco);
 
-        City Leiria = new City("leiria", "Center");
-        Weather l1 = new Weather(now,8, 17,24, 74, 13, Leiria);
-        Weather l2 = new Weather(now.plusDays(1),8, 16,20, 80, 11, Leiria);
-        Weather l3 = new Weather(now.plusDays(2),9, 16,90, 82, 24, Leiria);
-        Weather l4 = new Weather(now.plusDays(3),11, 15,40, 80, 19, Leiria);
-        Weather l5 = new Weather(now.plusDays(4),12, 17,10, 73, 23, Leiria);
+        City Leiria = new City("Leiria", "Center");
+        Weather l1 = new Weather(now,8.0, 17.0,24, 74, 13, Leiria);
+        Weather l2 = new Weather(now.plusDays(1),8.0, 16.0,20, 80, 11, Leiria);
+        Weather l3 = new Weather(now.plusDays(2),9.0, 16.0,90, 82, 24, Leiria);
+        Weather l4 = new Weather(now.plusDays(3),11.0, 15.0,40, 80, 19, Leiria);
+        Weather l5 = new Weather(now.plusDays(4),12.0, 17.0,10, 73, 23, Leiria);
         this.weatherRepo.save(l1);
         this.weatherRepo.save(l2);
         this.weatherRepo.save(l3);
@@ -228,12 +228,12 @@ public class Bootstrap implements ApplicationListener<ContextRefreshedEvent> {
         Leiria.addWeather(l5);
         this.citiesRepo.save(Leiria);
 
-        City Santarem = new City("santarem", "Center");
-        Weather s1 = new Weather(now,7, 16,2, 75, 18, Santarem);
-        Weather s2 = new Weather(now.plusDays(1),6, 16,10, 79, 10, Santarem);
-        Weather s3 = new Weather(now.plusDays(2),9, 16,90, 83, 21, Santarem);
-        Weather s4 = new Weather(now.plusDays(3),11, 16,50, 82, 18, Santarem);
-        Weather s5 = new Weather(now.plusDays(4),11, 18,20, 76, 21, Santarem);
+        City Santarem = new City("Santarem", "Center");
+        Weather s1 = new Weather(now,7.0, 16.0,2, 75, 18, Santarem);
+        Weather s2 = new Weather(now.plusDays(1),6.0, 16.0,10, 79, 10, Santarem);
+        Weather s3 = new Weather(now.plusDays(2),9.0, 16.0,90, 83, 21, Santarem);
+        Weather s4 = new Weather(now.plusDays(3),11.0, 16.0,50, 82, 18, Santarem);
+        Weather s5 = new Weather(now.plusDays(4),11.0, 18.0,20, 76, 21, Santarem);
         this.weatherRepo.save(s1);
         this.weatherRepo.save(s2);
         this.weatherRepo.save(s3);
@@ -246,12 +246,12 @@ public class Bootstrap implements ApplicationListener<ContextRefreshedEvent> {
         Santarem.addWeather(s5);
         this.citiesRepo.save(Santarem);
 
-        City Portalegre = new City("portalegre", "Center");
-        Weather pa1 = new Weather(now,8, 11,4, 89, 16, Portalegre);
-        Weather pa2 = new Weather(now.plusDays(1),8, 20,18, 80, 11, Portalegre);
-        Weather pa3 = new Weather(now.plusDays(2),9, 13,70, 78, 21, Portalegre);
-        Weather pa4 = new Weather(now.plusDays(3),10, 13,50, 77, 16, Portalegre);
-        Weather pa5 = new Weather(now.plusDays(4),11, 15,20, 73, 16, Portalegre);
+        City Portalegre = new City("Portalegre", "Center");
+        Weather pa1 = new Weather(now,8.0, 11.0,4, 89, 16, Portalegre);
+        Weather pa2 = new Weather(now.plusDays(1),8.0, 20.0,18, 80, 11, Portalegre);
+        Weather pa3 = new Weather(now.plusDays(2),9.0, 13.0,70, 78, 21, Portalegre);
+        Weather pa4 = new Weather(now.plusDays(3),10.0, 13.0,50, 77, 16, Portalegre);
+        Weather pa5 = new Weather(now.plusDays(4),11.0, 15.0,20, 73, 16, Portalegre);
         this.weatherRepo.save(pa1);
         this.weatherRepo.save(pa2);
         this.weatherRepo.save(pa3);
@@ -264,12 +264,12 @@ public class Bootstrap implements ApplicationListener<ContextRefreshedEvent> {
         Portalegre.addWeather(pa5);
         this.citiesRepo.save(Portalegre);
 
-        City Lisboa = new City("lisboa", "Center");
-        Weather ls1 = new Weather(now,8, 14,2, 74, 16, Lisboa);
-        Weather ls2 = new Weather(now.plusDays(1),9, 16,10, 75, 13, Lisboa);
-        Weather ls3 = new Weather(now.plusDays(2),11, 16,90, 81, 26, Lisboa);
-        Weather ls4 = new Weather(now.plusDays(3),12, 15,60, 79, 19, Lisboa);
-        Weather ls5 = new Weather(now.plusDays(4),12, 17,40, 78, 24, Lisboa);
+        City Lisboa = new City("Lisboa", "Center");
+        Weather ls1 = new Weather(now,8.0, 14.0,2, 74, 16, Lisboa);
+        Weather ls2 = new Weather(now.plusDays(1),9.0, 16.0,10, 75, 13, Lisboa);
+        Weather ls3 = new Weather(now.plusDays(2),11.0, 16.0,90, 81, 26, Lisboa);
+        Weather ls4 = new Weather(now.plusDays(3),12.0, 15.0,60, 79, 19, Lisboa);
+        Weather ls5 = new Weather(now.plusDays(4),12.0, 17.0,40, 78, 24, Lisboa);
         this.weatherRepo.save(ls1);
         this.weatherRepo.save(ls2);
         this.weatherRepo.save(ls3);
@@ -283,12 +283,12 @@ public class Bootstrap implements ApplicationListener<ContextRefreshedEvent> {
         this.citiesRepo.save(Lisboa);
 
 
-        City Evora = new City("evora", "South");
-        Weather e1 = new Weather(now,7, 13,2, 84, 18, Evora);
-        Weather e2 = new Weather(now.plusDays(1),7, 14,20, 80, 11, Evora);
-        Weather e3 = new Weather(now.plusDays(2),9, 16,90, 81, 18, Evora);
-        Weather e4 = new Weather(now.plusDays(3),11, 15,50, 80, 18, Evora);
-        Weather e5 = new Weather(now.plusDays(4),11, 17,20, 77, 18, Evora);
+        City Evora = new City("Evora", "South");
+        Weather e1 = new Weather(now,7.0, 13.0,2, 84, 18, Evora);
+        Weather e2 = new Weather(now.plusDays(1),7.0, 14.0,20, 80, 11, Evora);
+        Weather e3 = new Weather(now.plusDays(2),9.0, 16.0,90, 81, 18, Evora);
+        Weather e4 = new Weather(now.plusDays(3),11.0, 15.0,50, 80, 18, Evora);
+        Weather e5 = new Weather(now.plusDays(4),11.0, 17.0,20, 77, 18, Evora);
         this.weatherRepo.save(e1);
         this.weatherRepo.save(e2);
         this.weatherRepo.save(e3);
@@ -301,12 +301,12 @@ public class Bootstrap implements ApplicationListener<ContextRefreshedEvent> {
         Evora.addWeather(e5);
         this.citiesRepo.save(Evora);
 
-        City Setubal = new City("setubal", "South");
-        Weather st1 = new Weather(now,7, 16,2, 76, 21, Setubal);
-        Weather st2 = new Weather(now.plusDays(1),8, 16,10, 80, 13, Setubal);
-        Weather st3 = new Weather(now.plusDays(2),10, 17,90, 84, 26, Setubal);
-        Weather st4 = new Weather(now.plusDays(3),11, 15,60, 82, 19, Setubal);
-        Weather st5 = new Weather(now.plusDays(4),12, 17,40, 80, 23, Setubal);
+        City Setubal = new City("Setubal", "South");
+        Weather st1 = new Weather(now,7.0, 16.0,2, 76, 21, Setubal);
+        Weather st2 = new Weather(now.plusDays(1),8.0, 16.0,10, 80, 13, Setubal);
+        Weather st3 = new Weather(now.plusDays(2),10.0, 17.0,90, 84, 26, Setubal);
+        Weather st4 = new Weather(now.plusDays(3),11.0, 15.0,60, 82, 19, Setubal);
+        Weather st5 = new Weather(now.plusDays(4),12.0, 17.0,40, 80, 23, Setubal);
         this.weatherRepo.save(st1);
         this.weatherRepo.save(st2);
         this.weatherRepo.save(st3);
@@ -319,12 +319,12 @@ public class Bootstrap implements ApplicationListener<ContextRefreshedEvent> {
         Setubal.addWeather(st5);
         this.citiesRepo.save(Setubal);
 
-        City Beja = new City("beja", "South");
-        Weather bj1 = new Weather(now,6, 12,44, 90, 19, Beja);
-        Weather bj2 = new Weather(now.plusDays(1),6, 14,10, 79, 11, Beja);
-        Weather bj3 = new Weather(now.plusDays(2),8, 16,80, 81, 19, Beja);
-        Weather bj4 = new Weather(now.plusDays(3),10, 14,40, 82, 19, Beja);
-        Weather bj5 = new Weather(now.plusDays(4),9, 16,40, 81, 23, Beja);
+        City Beja = new City("Beja", "South");
+        Weather bj1 = new Weather(now,6.0, 12.0,44, 90, 19, Beja);
+        Weather bj2 = new Weather(now.plusDays(1),6.0, 14.0,10, 79, 11, Beja);
+        Weather bj3 = new Weather(now.plusDays(2),8.0, 16.0,80, 81, 19, Beja);
+        Weather bj4 = new Weather(now.plusDays(3),10.0, 14.0,40, 82, 19, Beja);
+        Weather bj5 = new Weather(now.plusDays(4),9.0, 16.0,40, 81, 23, Beja);
         this.weatherRepo.save(bj1);
         this.weatherRepo.save(bj2);
         this.weatherRepo.save(bj3);
@@ -337,12 +337,12 @@ public class Bootstrap implements ApplicationListener<ContextRefreshedEvent> {
         Beja.addWeather(bj5);
         this.citiesRepo.save(Beja);
 
-        City Faro = new City("faro", "South");
-        Weather f1 = new Weather(now,10, 16,95, 93, 19, Faro);
-        Weather f2 = new Weather(now.plusDays(1),10, 17,20, 72, 16, Faro);
-        Weather f3 = new Weather(now.plusDays(2),12, 17,90, 79, 21, Faro);
-        Weather f4 = new Weather(now.plusDays(3),13, 16,90, 78, 18, Faro);
-        Weather f5 = new Weather(now.plusDays(4),14, 18,90, 84, 32, Faro);
+        City Faro = new City("Faro", "South");
+        Weather f1 = new Weather(now,10.0, 16.0,95, 93, 19, Faro);
+        Weather f2 = new Weather(now.plusDays(1),10.0, 17.0,20, 72, 16, Faro);
+        Weather f3 = new Weather(now.plusDays(2),12.0, 17.0,90, 79, 21, Faro);
+        Weather f4 = new Weather(now.plusDays(3),13.0, 16.0,90, 78, 18, Faro);
+        Weather f5 = new Weather(now.plusDays(4),14.0, 18.0,90, 84, 32, Faro);
         this.weatherRepo.save(f1);
         this.weatherRepo.save(f2);
         this.weatherRepo.save(f3);
@@ -355,12 +355,12 @@ public class Bootstrap implements ApplicationListener<ContextRefreshedEvent> {
         Faro.addWeather(f5);
         this.citiesRepo.save(Faro);
 
-        City Madeira = new City("madeira", "Isle");
-        Weather m1 = new Weather(now,6, 8,85, 73, 13, Madeira);
-        Weather m2 = new Weather(now.plusDays(1),8, 12,60, 71, 16, Madeira);
-        Weather m3 = new Weather(now.plusDays(2),5, 11,90, 65, 21, Madeira);
-        Weather m4 = new Weather(now.plusDays(3),6, 10,90, 70, 18, Madeira);
-        Weather m5 = new Weather(now.plusDays(4),7, 10,80, 72, 23, Madeira);
+        City Madeira = new City("Madeira", "Isle");
+        Weather m1 = new Weather(now,6.0, 8.0,85, 73, 13, Madeira);
+        Weather m2 = new Weather(now.plusDays(1),8.0, 12.0,60, 71, 16, Madeira);
+        Weather m3 = new Weather(now.plusDays(2),5.0, 11.0,90, 65, 21, Madeira);
+        Weather m4 = new Weather(now.plusDays(3),6.0, 10.0,90, 70, 18, Madeira);
+        Weather m5 = new Weather(now.plusDays(4),7.0, 10.0,80, 72, 23, Madeira);
         this.weatherRepo.save(m1);
         this.weatherRepo.save(m2);
         this.weatherRepo.save(m3);
@@ -373,12 +373,12 @@ public class Bootstrap implements ApplicationListener<ContextRefreshedEvent> {
         Madeira.addWeather(m5);
         this.citiesRepo.save(Madeira);
 
-        City Acores = new City("açores", "Isle");
-        Weather ares1 = new Weather(now,14, 16,1, 64, 13, Acores);
-        Weather ares2 = new Weather(now.plusDays(1),12, 18,50, 79, 37, Acores);
-        Weather ares3 = new Weather(now.plusDays(2),12, 14,10, 64, 42, Acores);
-        Weather ares4 = new Weather(now.plusDays(3),14, 16,50, 76, 511, Acores);
-        Weather ares5 = new Weather(now.plusDays(4),14, 17,40, 78, 37, Acores);
+        City Acores = new City("Açores", "Isle");
+        Weather ares1 = new Weather(now,14.0, 16.0,1, 64, 13, Acores);
+        Weather ares2 = new Weather(now.plusDays(1),12.0, 18.0,50, 79, 37, Acores);
+        Weather ares3 = new Weather(now.plusDays(2),12.0, 14.0,10, 64, 42, Acores);
+        Weather ares4 = new Weather(now.plusDays(3),14.0, 16.0,50, 76, 511, Acores);
+        Weather ares5 = new Weather(now.plusDays(4),14.0, 17.0,40, 78, 37, Acores);
         this.weatherRepo.save(ares1);
         this.weatherRepo.save(ares2);
         this.weatherRepo.save(ares3);
