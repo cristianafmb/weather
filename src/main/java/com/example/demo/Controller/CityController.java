@@ -1,13 +1,10 @@
 package com.example.demo.Controller;
 
-import java.security.KeyStore.Entry;
-import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.function.Function;
 import java.util.logging.Logger;
-import java.util.stream.Collector;
-import java.util.stream.Collectors;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -19,7 +16,6 @@ import com.example.demo.Service.CityService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
@@ -87,36 +83,89 @@ public class CityController {
         Weather today = this.cityService.weatherToday(found);
         model.addAttribute("today", today);
 
-        LocalDate t = LocalDate.now();
+        List<Weather> weathers = this.cityService.variationWeather(found);
+       
+        Integer init = weathers.get(0).getDay().getHour(); 
+        Integer fin = weathers.get(weathers.size()-1).getDay().getHour(); 
+        ArrayList<Integer> hours = new ArrayList<>();
+        int sub = fin - init;
+        int ratio = sub / weathers.size();
+        int j = init;
+        for(j=init; j<fin; j++){
+            hours.add(j);
+            j = j-1 + ratio;
+        }
+       
+        
+        model.addAttribute("hours", hours);
 
-        model.addAttribute("day", t);
+
+        ArrayList<Double> atual = new ArrayList<>();
+
+        ArrayList<Integer> atualInt = new ArrayList<>();
+        int i = 0;
+        for (Weather w : weathers) {
+            atual.add(w.getAtualDegree());
+        }
+
+        model.addAttribute("size", atual.size());
+        for (i = 0; i < atual.size(); i++) {
+            Integer d = (int) Math.round(atual.get(i));
+            atualInt.add(d);
+
+        }
+        model.addAttribute("AI", atualInt);
+        logger.info("\n\n hours-> " + hours + "\n temperatures->" + atualInt);
+
+
         return "city";
     }
 
-    @PostMapping("/city")
-    public String degrees(HttpServletRequest request){
-        Long c = Long.valueOf(request.getParameter("celsius"));
-        Long f = Long.valueOf(request.getParameter("fahr"));
+    @GetMapping("/fcity")
+    public String degrees(@RequestParam String name, HttpServletRequest request, Model model) {
 
-        if(c!=null){
-            this.cityService.setCelsius();
-        }
-        if(f!=null){
-            this.cityService.setFahrenheit();
-        }
-        String referer = request.getHeader("Referer");
-        return "redirect:"+ referer;
+        this.cityService.setFahrenheit();
+        City found = this.cityService.findByName(name);
+        model.addAttribute("city", found);
+        Weather today = this.cityService.weatherToday(found);
+        model.addAttribute("today", today);
+
+        return "city";
     }
 
     @GetMapping("/today")
     public String getTodayWeather(Model model) {
 
         Map<String, Weather> citiesWeather = this.cityService.todayWeather();
-       
 
         model.addAttribute("map", citiesWeather);
 
         return "todayAllCities";
     }
 
+    @GetMapping("/nextdays")
+    public String nextDays(Model model) {
+        Map<String, Weather> citiesWeather = this.cityService.todayWeather();
+
+        model.addAttribute("map", citiesWeather);
+        return "choosedays";
+    }
+
+    @GetMapping("/next")
+    public String nextDaysWeather(@RequestParam String city, @RequestParam Integer days, Model model) {
+
+        City cityFound = this.cityService.findByName(city);
+        model.addAttribute("city", city);
+        List<Weather> weathers = new ArrayList<>();
+
+        weathers = this.cityService.nextDays(cityFound);
+
+        
+        logger.info("msg" + weathers);
+        model.addAttribute("weather", weathers);
+
+        return "ndays";
+    }
+
+   
 }

@@ -3,12 +3,14 @@ package com.example.demo.Model;
 import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Data
 @Entity(name = "weather")
@@ -16,7 +18,7 @@ import java.time.LocalDateTime;
 public class Weather {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @Column
@@ -38,6 +40,8 @@ public class Weather {
     private LocalDateTime day;
 
     private boolean degree = true; // true -> celsius, false -> fahrenheit
+    private String stringDay;
+    private Double atualDegree = 0.0;
 
 
     @ManyToOne(cascade=CascadeType.ALL,fetch = FetchType.LAZY)
@@ -46,16 +50,19 @@ public class Weather {
     @JsonIgnore
     private City city;
 
-    public Weather(LocalDateTime day, Double min, Double max, Integer precipitation, Integer humidity, Integer wind, City city) {
+    public Weather(LocalDateTime day, Double atual,  Double min, Double max, Integer precipitation, Integer humidity, Integer wind, City city) {
         this.day = day;
+        this.atualDegree = atual;
         this.min = min;
         this.max = max;
         this.precipitation = precipitation;
         this.humidity = humidity;
         this.wind = wind;
         this.city = city;
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        String format = day.format(formatter);
+        this.stringDay = format;
     }
-
     public boolean getDegree() {
         return degree;
     }
@@ -88,13 +95,6 @@ public class Weather {
         this.max = d;
     }
 
-    public LocalDateTime getTime() {
-        return day;
-    }
-
-    public void setTime(LocalDateTime time) {
-        this.day = time;
-    }
 
     public Integer getPrecipitation() {
         return precipitation;
@@ -127,4 +127,28 @@ public class Weather {
     public void setCity(City city) {
         this.city = city;
     }
+
+    public LocalDateTime getDay(){
+        return day;
+    }
+
+    public void setDay(LocalDateTime day){
+        this.day = day;
+    }
+
+    public String getStringDay (){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        String format = day.format(formatter);
+        return format;
+    }
+
+
+    public Double getAtualDegree(){
+        return this.atualDegree;
+    }
+
+    public void setAtualDegree(Double degree){
+        this.atualDegree = degree;
+    }
+
 }

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml" lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Show Cities</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <style>
+    table {
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      width: 400px;
+    }
+
+    td,
+    th {
+      border: 1px solid #dddddd;
+      text-align: center;
+      padding: 8px;
+      width: 200px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="">Weather Web REST API</a>
+      </div>
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="/">Home</a></li>
+        <li><a href="/cities">Show All Cities</a></li>
+        <li><a href="/today">Weather Today</a></li>
+        <li><a href="/nextdays">Weather Next Days</a></li>
+      </ul>
+
+    </div>
+
+  </nav>
+  <div class="container">
+
+    <form  method="get" action="next">
+      <table class="table">
+        <tbody>
+          <tr>
+            <th>
+              <h4>
+                <label for="exampleFormControlSelect2"
+                  style="font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">See
+                  Weather to City: </label>
+              </h4>
+              <form >
+
+                <select id="city" name="city"
+                  style="font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">
+                  <span th:each="entry : ${map}">
+                    <option th:text="${entry.key}"></option>
+                  </span>
+                </select>
+            </th>
+            <th>
+              <h4>
+                <label for="exampleFormControlSelect2"
+                  style="font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">See
+                  Weather to Number of Days: </label>
+              </h4>
+              <select id="days" name="days"
+                style="width: auto; align-self: auto; font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+              </select>
+
+    </form>
+    </th>
+
+    </tr>
+    </tbody>
+
+
+    </table>
+    <button type="submit" class="btn btn-secondary btn-lg btn-block" href="/next"
+      style="font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',">Go</button>
+
+    </form>
+  </div>
+
+
+
+</body>
+
+</html>

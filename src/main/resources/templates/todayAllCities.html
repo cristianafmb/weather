@@ -46,7 +46,7 @@
         <tbody th:each="entry : ${map}" >
           <tr th:each="weather : ${entry.value}">
             <td><span th:text="${entry.key}"> Name </span></td>
-            <td style="background-color: #F5F5F5;"><span th:text="${weather.day}"> Day </span></td>
+            <td style="background-color: #F5F5F5;"><span th:text="${weather.stringDay}"> Day </span></td>
 
             <td><span th:text="${weather.min}"> min </span></td>
             <td style="background-color: #F5F5F5;"><span th:text="${weather.max}" > max </span></td>
