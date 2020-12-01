@@ -3,10 +3,12 @@ package com.example.demo.Service;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
+import java.util.stream.IntStream;
 
 import com.example.demo.Controller.CityController;
 import com.example.demo.Model.City;
@@ -14,7 +16,6 @@ import com.example.demo.Model.Weather;
 import com.example.demo.Repository.CityRepository;
 import com.example.demo.Repository.WeatherRepository;
 
-import org.hibernate.annotations.common.util.impl.Log_.logger;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,12 +34,22 @@ public class CityService {
         this.cityRepo = cityRepo;
     }
 
+    /**
+     * search and return all the cities in the repository
+     * @return
+     */
     public List<City> findAll() {
         List<City> listcities = new ArrayList<>();
         this.cityRepo.findAll().forEach(listcities::add);
         return listcities;
     }
 
+    /**
+     * search cities by region, if the user is looking for only the North cities
+     * It will return all the cities in the North
+     * @param region
+     * @return
+     */
     public List<City> findRegion(String region) {
         List<City> allcities = this.findAll();
         List<City> cityRegion = new ArrayList<>();
@@ -50,6 +61,11 @@ public class CityService {
         return cityRegion;
     }
 
+    /**
+     * Find the city by Name
+     * @param name
+     * @return
+     */
     public City findByName(String name) {
         List<City> allcities = this.findAll();
         for (City c : allcities) {
@@ -60,6 +76,14 @@ public class CityService {
         return null;
     }
 
+    /**
+     * Objective: get weather of city with the nearest hour as now()
+     * It will look for every city and the weather, and check if it is the same day
+     * If is the same day, add to the todayWeathers
+     * after that is looking for the nearest hour
+     * @param found
+     * @return
+     */
     public Weather weatherToday(City found) {
         LocalDateTime today = LocalDateTime.now();
         ArrayList<Weather> todayWeathers = new ArrayList<>();
@@ -78,6 +102,12 @@ public class CityService {
         return todayW;
     }
 
+    /**
+     * looking for the nearest hour by comparate the day-hour
+     * @param hour
+     * @param todayWeathers
+     * @return
+     */
     private Weather checkNearestHour(Integer hour, ArrayList<Weather> todayWeathers) {
         boolean b = false;
         while (!b) {
@@ -89,10 +119,14 @@ public class CityService {
             }
             hour++;
         }
-        b=false;
+        b = false;
         return null;
     }
 
+    /**
+     * Never Used - INCOMPLETE
+     * to change fahrenheit to celsius
+     */
     public void setCelsius() {
         List<City> allCities = this.findAll();
         for (City c : allCities) {
@@ -106,22 +140,29 @@ public class CityService {
         }
     }
 
+    /**
+     * Never Used - INCOMPLETE
+     * to change celsius to fahrenheit
+     */
     public void setFahrenheit() {
         List<City> allCities = this.findAll();
-    
+
         for (City c : allCities) {
             for (Weather w : c.getWeathers()) {
                 if (w.getDegree()) {
                     w.setMax(w.getMax() * 1.8000 + 32);
                     w.setMin(w.getMin() * 1.8000 + 32);
                     w.setDegree(false);
-                   this.weatherRepo.save(w);
+                    this.weatherRepo.save(w);
                 }
             }
             this.cityRepo.save(c);
         }
     }
 
+    /**
+     * get all the weather of today, of all the cities and return a treemap - order
+     */
     public Map<String, Weather> todayWeather() {
         List<City> allCities = this.findAll();
 
@@ -135,7 +176,13 @@ public class CityService {
         return cWeather;
     }
 
-	public List<Weather> variationWeather(City found) {
+    /**
+     * to the chart
+     * get all the temperature of the day, and return all the weather of today
+     * @param found
+     * @return
+     */
+    public List<Weather> variationWeather(City found) {
         LocalDateTime today = LocalDateTime.now();
         ArrayList<Weather> todayWeathers = new ArrayList<>();
         List<Weather> weathers = found.getWeathers();
@@ -147,27 +194,43 @@ public class CityService {
             }
         }
         return todayWeathers;
-	}
+    }
 
-	public List<Weather> nextDays(City found) {
-        List<Weather> weathersNext = new ArrayList<>();
+    /**
+     * by an n numbers of days, get all the weathers and return only the n days, starting today 
+     * @param found
+     * @param days
+     * @return
+     */
+    public List<Weather> nextDays(City found, Integer days) {
+        logger.info("days ->" + days);
+        ArrayList<Weather> weathersNext = new ArrayList<>();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
         List<Weather> weathers = found.getWeathers();
         logger.info("weathers ->" + weathers.get(0).getDay().getDayOfYear());
-        int dayAux = weathers.get(0).getDay().getDayOfYear(); //336
-        for(Weather w: weathers){
-            if(weathersNext.isEmpty()){
-                weathersNext.add(w);
+        int dayAux = weathers.get(0).getDay().getDayOfYear(); // 336
+        int i = 0;
+
+        for (Weather w : weathers) {
+            if (i == days) {
+                break;
             }
-            if(w.getDay().getDayOfYear() != dayAux){
+            if (weathersNext.isEmpty()) {
+                weathersNext.add(w);
+                i++;
+            }
+            if (w.getDay().getDayOfYear() != dayAux) {
                 dayAux = w.getDay().getDayOfYear();
                 String format = w.getDay().format(formatter);
-                w.setStringDay(format);                
+                w.setStringDay(format);
                 weathersNext.add(w);
+                i++;
             }
+
         }
-		return weathersNext;
-	}
+
+        return weathersNext;
+    }
 
 }
