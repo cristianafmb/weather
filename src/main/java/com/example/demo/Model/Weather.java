@@ -11,6 +11,7 @@ import lombok.ToString;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Objects;
 
 @Data
 @Entity(name = "weather")
@@ -151,4 +152,15 @@ public class Weather {
         this.atualDegree = degree;
     }
 
+    @Override
+    public int hashCode() {
+      return Objects.hash(this.id, this.min, this.max, this.precipitation, this.humidity, this.wind, this.day, this.atualDegree, this.city);
+    }
+  
+    @Override
+    public String toString() {
+      return "Weather{" + "id=" + this.id + ", min='" + this.min + '\'' + ", max='" + this.max + ", precipitation='" + this.precipitation 
+      + ", humidity='" + this.humidity + ", wind='" + this.wind + ", day='" + this.day + ", atualDegree='" + this.atualDegree
+      + ", city='" + this.city+ '\'' + '}';
+    }
 }

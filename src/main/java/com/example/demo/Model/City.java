@@ -2,6 +2,7 @@ package com.example.demo.Model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -67,5 +68,15 @@ public class City {
     public void addWeather(Weather weather) {
         this.weathers.add(weather);
         weather.setCity(this);
+    }
+
+    @Override
+    public int hashCode() {
+      return Objects.hash(this.id, this.name, this.region, this.weathers);
+    }
+  
+    @Override
+    public String toString() {
+      return "City{" + "id=" + this.id + ", name='" + this.name + '\'' + ", region='" + this.region + ", weathers='" + this.weathers + '\'' + '}';
     }
 }

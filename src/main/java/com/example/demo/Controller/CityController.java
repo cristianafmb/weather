@@ -12,10 +12,13 @@ import com.example.demo.Model.City;
 import com.example.demo.Model.Weather;
 import com.example.demo.Service.CityService;
 
+import org.apache.logging.log4j.message.ReusableMessage;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
 
 @Controller
 @WebServlet
@@ -47,8 +50,8 @@ public class CityController {
      * @return
      */
     @GetMapping("/cities")
-    public String getAllCities() {
-        return "showCities";
+    public ResponseEntity<Iterable<City>> getAllCities() {
+        return ResponseEntity.ok(this.cityService.findAll());
     }
 
     /**
@@ -56,12 +59,8 @@ public class CityController {
      * North cities
      */
     @GetMapping("/onlyNorth")
-    public String getNorthCities(Model model) {
-
-        List<City> northCitites = this.cityService.findRegion("North");
-        model.addAttribute("region", northCitites);
-
-        return "regionCities";
+    public ResponseEntity<Iterable<City>> getNorthCities(Model model) {
+        return ResponseEntity.ok(this.cityService.findRegion("North"));
     }
 
     /**
@@ -69,12 +68,8 @@ public class CityController {
      * Center cities
      */
     @GetMapping("/onlyCenter")
-    public String getCenterCities(Model model) {
-
-        List<City> centerCitites = this.cityService.findRegion("Center");
-        model.addAttribute("region", centerCitites);
-
-        return "regionCities";
+    public ResponseEntity<Iterable<City>> getCenterCities(Model model) {
+        return ResponseEntity.ok(this.cityService.findRegion("Center"));
     }
 
     /**
@@ -82,12 +77,8 @@ public class CityController {
      * South cities
      */
     @GetMapping("/onlySouth")
-    public String getSouthCities(Model model) {
-
-        List<City> southCities = this.cityService.findRegion("South");
-        model.addAttribute("region", southCities);
-
-        return "regionCities";
+    public ResponseEntity<Iterable<City>> getSouthCities(Model model) {
+        return ResponseEntity.ok(this.cityService.findRegion("South"));
     }
 
     /**
@@ -95,12 +86,8 @@ public class CityController {
      * ISles cities
      */
     @GetMapping("/onlyIsle")
-    public String getIsleCities(Model model) {
-
-        List<City> isleCities = this.cityService.findRegion("Isle");
-        model.addAttribute("region", isleCities);
-
-        return "regionCities";
+    public  ResponseEntity<Iterable<City>> getIsleCities(Model model) {
+        return ResponseEntity.ok(this.cityService.findRegion("Isle"));
     }
 
     /**
@@ -110,11 +97,10 @@ public class CityController {
      * And the chart with the Today Temperature
      */
     @GetMapping("/city")
-    public String getCityweather(@RequestParam String name, Model model) {
+    public ResponseEntity<ArrayList<Object>> getCityweather(@RequestParam String name, Model model) {
         City found = this.cityService.findByName(name);
-        model.addAttribute("city", found);
         Weather today = this.cityService.weatherToday(found);
-        model.addAttribute("today", today);
+    
 
         List<Weather> weathers = this.cityService.variationWeather(found);
 
@@ -132,7 +118,6 @@ public class CityController {
             j = j - 1 + ratio;
         }
 
-        model.addAttribute("hours", hours);
 
         ArrayList<Double> atual = new ArrayList<>();
 
@@ -142,37 +127,19 @@ public class CityController {
             atual.add(w.getAtualDegree());
         }
 
-        model.addAttribute("size", atual.size());
         for (i = 0; i < atual.size(); i++) {
             Integer d = (int) Math.round(atual.get(i));
             atualInt.add(d);
 
         }
-        model.addAttribute("AI", atualInt);
-        // logger.info("\n\n hours-> " + hours + "\n temperatures->" + atualInt);
-
-        return "city";
+        ArrayList<Object> all = new ArrayList<>();
+        all.add(found);
+        all.add(today);
+        all.add(atual);
+        return ResponseEntity.ok(all);
     }
 
-    /**
-     * INCOMPLETE
-     * The idea was to turn the celsius to fahrenheit without leaving the page
-     * @param name
-     * @param request
-     * @param model
-     * @return
-     */
-    @GetMapping("/fcity")
-    public String degrees(@RequestParam String name, HttpServletRequest request, Model model) {
 
-        this.cityService.setFahrenheit();
-        City found = this.cityService.findByName(name);
-        model.addAttribute("city", found);
-        Weather today = this.cityService.weatherToday(found);
-        model.addAttribute("today", today);
-
-        return "city";
-    }
 
     /**
      * show all the infomation (city, day, min, max, precipitation, humidity, wind)
@@ -181,13 +148,10 @@ public class CityController {
      * @return
      */
     @GetMapping("/today")
-    public String getTodayWeather(Model model) {
+    public  ResponseEntity<Map<String, Weather>> getTodayWeather(Model model) {
 
         Map<String, Weather> citiesWeather = this.cityService.todayWeather();
-
-        model.addAttribute("map", citiesWeather);
-
-        return "todayAllCities";
+        return ResponseEntity.ok(citiesWeather);
     }
 
     /**
@@ -196,11 +160,9 @@ public class CityController {
      * @return
      */
     @GetMapping("/nextdays")
-    public String nextDays(Model model) {
+    public ResponseEntity<Map<String, Weather>> nextDays(Model model) {
         Map<String, Weather> citiesWeather = this.cityService.todayWeather();
-
-        model.addAttribute("map", citiesWeather);
-        return "choosedays";
+        return ResponseEntity.ok(citiesWeather);
     }
 
     /**
@@ -212,7 +174,8 @@ public class CityController {
      * @return
      */
     @GetMapping("/next")
-    public String nextDaysWeather(@RequestParam String city, @RequestParam Integer days, Model model) {
+    public ResponseEntity<ArrayList<Object>> nextDaysWeather(@RequestParam String city, @RequestParam Integer days,
+            Model model) {
 
         City cityFound = this.cityService.findByName(city);
         model.addAttribute("city", city);
@@ -220,10 +183,11 @@ public class CityController {
 
         weathers = this.cityService.nextDays(cityFound, days);
 
-        // logger.info("msg" + weathers);
-        model.addAttribute("weather", weathers);
+        ArrayList<Object> all = new ArrayList<>();
+        all.add(cityFound);
+        all.add(weathers);
 
-        return "ndays";
+        return ResponseEntity.ok(all);
     }
 
 }
